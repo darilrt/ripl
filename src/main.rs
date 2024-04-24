@@ -1,24 +1,14 @@
+use crate::{interpreter::Interpreter, utils::parse};
+
 mod ast;
+mod interpreter;
 mod lexer;
 mod parser;
 mod token;
+mod utils;
 
 fn main() {
-    // open the file
-    let input = std::fs::read_to_string("syntax").unwrap();
+    let interpreter = Interpreter::new();
 
-    // create a lexer
-    let mut lexer = lexer::Lexer::new(input);
-
-    // read all tokens
-    let tokens = lexer.read_all();
-
-    // create a parser
-    let mut parser = parser::Parser::new(tokens);
-
-    // parse the tokens
-    let ast = parser.parse();
-
-    // print the AST
-    println!("{:?}", ast);
+    interpreter.exec(parse("1 + 2 * 3"));
 }

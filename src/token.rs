@@ -25,7 +25,6 @@ pub enum TokenKind {
     Symbol,
     Keyword,
     Operator,
-    Comment,
 }
 
 impl Debug for Token {

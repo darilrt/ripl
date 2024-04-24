@@ -1,7 +1,7 @@
 use std::cell::RefCell;
 
 use crate::{
-    ast::{BinaryOp, Expr},
+    ast::{Ast, BinaryOp, Expr, Stmt},
     token::{Token, TokenKind},
 };
 
@@ -19,8 +19,12 @@ impl Parser {
         }
     }
 
-    pub fn parse(&self) -> Expr {
-        self.parse_expr()
+    pub fn parse(&self) -> Ast {
+        Ast::Stmt(self.parse_statement())
+    }
+
+    fn parse_statement(&self) -> Stmt {
+        Stmt::Expr(self.parse_expr())
     }
 
     // expr = additive

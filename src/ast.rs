@@ -1,4 +1,15 @@
 #[derive(Debug)]
+pub enum Ast {
+    Stmt(Stmt),
+}
+
+#[derive(Debug)]
+pub enum Stmt {
+    Expr(Expr),
+    FunctionStmt(String, Vec<String>, Box<Stmt>),
+}
+
+#[derive(Debug)]
 pub enum Expr {
     Integer(i64),
     Float(f64),
